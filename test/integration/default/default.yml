@@ -1,5 +1,5 @@
 - name: Ansible Filebeat installation main playbook
-  hosts: prod-mesos
+  hosts: prod-mesos-agent
   user: centos
   become: yes
   become_method: sudo
