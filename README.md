@@ -4,7 +4,9 @@ Ansible Filebeat role
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-DavidWittman.filebeat-blue.svg?style=flat)](https://galaxy.ansible.com/detail#/role/6293)
 
 Installs Elastic's Filebeat for forwarding logs.
-
+```
+ansible-playbook --private-key ~/.ssh/use-prod-dcos-agent.pem ansible-filebeat/test/integration/default/default.yml
+``` 
 Role Variables
 --------------
 

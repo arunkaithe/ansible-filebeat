@@ -1,5 +1,7 @@
-- name: test playbook
-  hosts: all
-  sudo: yes
+- name: Ansible Filebeat installation main playbook
+  hosts: prod-mesos
+  user: centos
+  become: yes
+  become_method: sudo
   roles:
     - ansible-filebeat

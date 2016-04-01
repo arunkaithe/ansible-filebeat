@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: David Wittman
+  author: ARUN
   description: Installs Elastic's Filebeat for forwarding logs.
   license: BSD
   min_ansible_version: 1.2

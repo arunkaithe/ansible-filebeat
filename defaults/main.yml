@@ -7,17 +7,44 @@
 filebeat_config:
   filebeat:
     prospectors:
-      - paths:
-          - /var/log/messages
-          - /var/log/*.log
+      -
+        paths:
+          - /var/log/auth.log
+          - /var/log/syslog
+          - /var/log/nodejs/*.log
+          - /var/log/eb-activity.log
+          - /var/log/nginx/*.log
+
         input_type: log
+        document_type: syslog
+
+      -
+        paths:
+          - /var/log/app/*.log
+        document_type: app-access
+
+      -
+        paths:
+          - /var/lib/mesos/slave/slaves/*/frameworks/*/executors/*/runs/latest/std*
+        document_type: app-access
+
+
+
+    registry_file: /var/lib/filebeat/registry
+
   output:
-    file:
-      path: /tmp/filebeat
-      filename: filebeat
+    logstash:
+      hosts: ["172.31.50.132:5044"] # elk_server_private_ip
+      bulk_max_size: 1024
+
+      tls:
+        certificate_authorities: ["/etc/pki/tls/certs/logstash-forwarder.crt"]
+
+  shipper:
+
   logging:
-    to_syslog: true
-    level: error
+    files:
+      rotateeverybytes: 10485760 # = 10MB
 
 # The installation state of the filebeat package, passed to the appropriate
 # packaging module (yum/apt) as the 'state'.
