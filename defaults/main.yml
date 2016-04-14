@@ -15,6 +15,7 @@ filebeat_config:
           - /var/log/eb-activity.log
           - /var/log/nginx/*.log
 
+
         input_type: log
         document_type: syslog
 
@@ -25,8 +26,13 @@ filebeat_config:
 
       -
         paths:
+          - /var/log/mongodb/*.log
+        document_type: mongodb
+
+      -
+        paths:
           - /var/lib/mesos/slave/slaves/*/frameworks/*/executors/*/runs/latest/std*
-        document_type: app-access
+        document_type: mesos
 
 
 
